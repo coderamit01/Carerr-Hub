@@ -16,7 +16,7 @@ const Hero = () => {
             </div>
             <div>
               <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-              className="w-1/2 rounded-lg shadow-2xl mx-auto" />
+              className="w-2/3 rounded-lg shadow-2xl mx-auto" />
             </div>
           </div>
         </div>

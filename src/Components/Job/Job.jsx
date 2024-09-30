@@ -3,7 +3,7 @@ import TransparentBtn from '../TransparentBtn/TransparentBtn';
 import GradientBtn from '../GradientBtn/GradientBtn';
 
 const Job = ({job}) => {
-  const {logo,job_title,company_name,remote_or_onsite,job_type,location,salary} = job
+  const {id,logo,job_title,company_name,remote_or_onsite,job_type,location,salary} = job
   return (
     <div className='border border-gray-200 rounded p-5'>
       <div className='mb-4'>
@@ -25,7 +25,7 @@ const Job = ({job}) => {
           <span>Salary: {salary}</span>
         </div>
       </div>
-      <GradientBtn text="View Details" link="/" />
+      <GradientBtn text="View Details" link={`/job/${id}`} />
     </div>
   );
 };
