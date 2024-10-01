@@ -1,14 +1,42 @@
 import React from 'react';
 import { BiEnvelope, BiMap, BiPhone } from 'react-icons/bi';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { getApliedJobId } from '../Utilities/localStorage';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const JobDetails = () => {
   const job = useLoaderData();
   const { jobId } = useParams();
   const currentId = parseInt(jobId);
+
   const currentJob = job.find(item => item.id === currentId);
-  const {id,logo,job_title,company_name,remote_or_onsite,job_type,location,salary,contact_information,job_description,job_responsibility,educational_requirements,experiences} = currentJob;
-  console.log(job_title)
+
+  const {id,job_title,salary,contact_information,job_description,job_responsibility,educational_requirements,experiences} = currentJob;
+
+  const handleApliedJobs = (id) => {
+    const appliedJob  = getApliedJobId(id);
+    if(appliedJob){
+      toast.warn("Already Aplied !", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+      });
+
+    }else{
+      toast.success("Successfuly Aplied", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+      });
+    }
+
+  }
+
   return (
     <div className="container mx-auto py-12 px-3">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -54,7 +82,7 @@ const JobDetails = () => {
                 <span><span className="font-semibold">Address:</span> {contact_information.address}</span>
               </div>
             </div>
-            <button className="btn btn-primary w-full">Apply Now</button>
+            <button onClick={() => handleApliedJobs(id)} className="btn btn-primary w-full">Apply Now</button>
           </div>
         </div>
 
